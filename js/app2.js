@@ -655,19 +655,19 @@ addEventListener("scroll", () => {
 
 
 
-
-    // sec3 start -----.-.-.-.--.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
-    // =============================
-    // =========================
+    // sec3 start -----.-.-.-.--.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-. 
+    // ============================= 
+    // ========================= 
 
 
     const phone1 = document.querySelector(".phone1 > img")
     const boxabout = document.querySelector(".boxabout > div")
 
+    const phone2 = document.querySelector(".phone2 > img")
+    const boxabout2 = document.querySelector(".boxabout2 > div")
+
 
     // selects sec 3 ===========================
-
-
 
 
     if (x > 17750 && x < 19250) {
@@ -675,7 +675,8 @@ addEventListener("scroll", () => {
         let progress = (x - 17750) / 1500
 
 
-        // phone
+        // phone 1
+
         phone1.style.top =
             `${-90 + progress * 35}%`
 
@@ -683,48 +684,208 @@ addEventListener("scroll", () => {
             `rotate(${progress * 5}deg) scale(${1 + progress * 0.18})`
 
 
-        // box
-        boxabout.style.opacity = progress
+        // box 1
+
+        boxabout.style.opacity = 1
 
         boxabout.style.transform =
             `translateY(${(-120 + progress * 120)}px) rotate(${progress * 1.5}deg)`
+
+
+        // phone 2
+
+        if (phone2) {
+            phone2.style.top =
+                `${-25 + progress * 3}%`
+
+            phone2.style.transform =
+                `rotate(${progress * 3}deg) scale(${1 + progress * 0.05})`
+        }
+
+
+        // box 2
+
+        boxabout2.style.opacity = 0
+
+        boxabout2.style.transform =
+            "translateY(100vh) scale(0.95)"
     }
 
-    // reset1 
+
+
+    // box 2 comes from bottom
+
+    else if (x >= 19250 && x < 20750) {
+
+        let progress2 = (x - 19250) / 1500
+
+
+        // phone 1
+
+        phone1.style.top = "-55%"
+
+        phone1.style.transform = "rotate(5deg) scale(1.18)"
+
+
+
+        // box 1
+
+        boxabout.style.opacity =
+            1 - progress2
+
+        boxabout.style.transform = `translateY(${-progress2 * 100}px) rotate(${1.5 - progress2 * 1.5}deg)`
+
+
+
+        // box 2
+
+        boxabout2.style.opacity = progress2
+
+
+        boxabout2.style.transform = `translateY(${100 - progress2 * 100}vh) scale(${0.95 + progress2 * 0.05})`
+
+    }
+
+
+    // reset 1
+
     else if (x <= 17750) {
+
+
+        // phone 1
 
         phone1.style.top = "-90%"
 
         phone1.style.transform =
             "rotate(0deg) scale(1)"
 
+
+        // box 1
+
         boxabout.style.opacity = 0
 
         boxabout.style.transform =
             "translateY(-120px) rotate(0deg)"
+
+
+        // phone 2
+
+        if (phone2) {
+            phone2.style.top = "-25%"
+
+            phone2.style.transform =
+                "rotate(0deg) scale(1)"
+        }
+
+
+        // box 2
+
+        boxabout2.style.opacity = 0
+
+        boxabout2.style.transform =
+            "translateY(100vh) scale(0.95)"
     }
+
 
     // reset 2
 
-    else if (x >= 19250) {
+    else if (x >= 20750) {
+
+
+        // phone 1
 
         phone1.style.top = "-55%"
 
         phone1.style.transform =
             "rotate(5deg) scale(1.18)"
 
-        boxabout.style.opacity = 1
+
+        // box 1
+
+        boxabout.style.opacity = 0
 
         boxabout.style.transform =
-            "translateY(0) rotate(1.5deg)"
+            "translateY(-100px) rotate(0deg)"
+
+
+        // phone 2
+
+        if (phone2) {
+            phone2.style.top = "-22%"
+            phone2.style.transform = `rotate(7deg) scale(1.13)`
+        }
+
+
+        // box 2
+
+        boxabout2.style.opacity = 1
+
+        boxabout2.style.transform =
+            "translateY(0) scale(1)"
     }
 
 
+    // start sec 4 =================================================================
 
-    
+
+    const all = document.querySelector(".sec4>.allbox")
+    const imgs = document.querySelectorAll(".sec4>.allbox>div>img")
+
+    const startsec4 = 20700
+    const moveStartsec4 = 24000
+    const endsec4 = 32000
+
+
+    if (x <= startsec4) {
+
+        all.style.left = "0%"
+
+        imgs[0].style.scale = "0.7"
+        imgs[1].style.scale = "0.7"
+        imgs[2].style.scale = "0.7"
+
+    }
+
+    else if (x > startsec4 && x <= moveStartsec4) {
+
+        all.style.left = "0%"
+
+        imgs[0].style.scale = "0.7"
+        imgs[1].style.scale = "0.7"
+        imgs[2].style.scale = "0.7"
+
+    }
+
+    else if (x > moveStartsec4 && x < endsec4) {
+
+        let resultsec4 = (x - moveStartsec4) / (endsec4 - moveStartsec4)
+
+        all.style.left = `${-resultsec4 * 200}%`
+
+        imgs[0].style.scale = `${0.7 + resultsec4 * 0.2}`
+        imgs[1].style.scale = `${0.7 + resultsec4 * 0.2}`
+        imgs[2].style.scale = `${0.7 + resultsec4 * 0.2}`
+
+    }
+
+    else if (x >= endsec4) {
+
+
+        all.style.left = "-200%"
+
+        imgs[0].style.scale = "0.9"
+        imgs[1].style.scale = "0.9"
+        imgs[2].style.scale = "0.9"
+
+    }
+
+
 
     console.log(x)
 
     flag = x
 
 })
+
+
+// finish :) ...................
